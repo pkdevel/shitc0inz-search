@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    links:
+      - mongod:database
+    command: --spring.data.mongodb.host=database
+  mongod:
+    image: "tutum/mongodb:3.2"
+    environment:
+      - AUTH=no
