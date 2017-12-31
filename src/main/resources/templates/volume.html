@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>shitc0inz index</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<table id="volumes">
+		<thead>
+			<tr>
+				<th>currency</th>
+				<th>
+					<a href="/volume?sorting=1h">vol. increase 1H</a>
+				</th>
+				<th>
+					<a href="/volume?sorting=3h">vol. increase 3H</a>
+				</th>
+				<th>
+					<a href="/volume?sorting=12h">vol. increase 12H</a>
+				</th>
+				<th>coinmarketcap</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="vol : ${volumes}">
+				<td th:text="${vol.symbol}">BTC</td>
+				<td th:text="${vol.volumeIncrease1h} + ' %'">0.0 %</td>
+				<td th:text="${vol.volumeIncrease3h} + ' %'">0.0 %</td>
+				<td th:text="${vol.volumeIncrease12h} + ' %'">0.0 %</td>
+				<td><a th:text="${vol.symbol}"
+					th:href="@{'https://coinmarketcap.com/currencies/' + ${vol.cmcId}}">BTC</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
